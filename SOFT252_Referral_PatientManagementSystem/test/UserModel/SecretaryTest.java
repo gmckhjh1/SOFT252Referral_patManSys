@@ -20,24 +20,26 @@ import org.junit.rules.ExpectedException;
  *
  * @author Glenn McKnight
  */
-public class AdministratorTest {
-    Administrator instance;
-    Administrator instanceTwo;
+public class SecretaryTest {
+    
+    Secretary instance;
+    Secretary instanceTwo;
     
     @AfterClass
     public static void tearDownClass() {
-        Administrator admin1 = new Administrator("A1001", "adminpassword", "Miss", "Melanie", "Lady", new ArrayList<>());        
-        admin1.addAdminToList(admin1);
+        Secretary sec1 = new Secretary("S1001", "secpassword", "Mr", "Norm", "Surly", new ArrayList<>());
         
-        admin1.save();
+        sec1.addSecToList(sec1);
+        
+        sec1.save();
     }
     
     @Before
     public void setUp() {
-        instance = new Administrator("A1001", "adminpassword", "They", "George", "Everyman", new ArrayList<>());
-        instanceTwo = new Administrator("A1002", "2ndadminpassword", "Mrs.", "Chai", "Tea", new ArrayList<>());        
-        instance.addAdminToList(instance);
-        instance.addAdminToList(instanceTwo);
+        instance = new Secretary("S1001", "secpassword", "They", "George", "Everyman", new ArrayList<>());
+        instanceTwo = new Secretary("S1002", "2ndsecpassword", "Mrs.", "Chai", "Tea", new ArrayList<>());        
+        instance.addSecToList(instance);
+        instance.addSecToList(instanceTwo);
     }
     
     @After
@@ -46,9 +48,9 @@ public class AdministratorTest {
         instanceTwo = null;
         
         exceptionRule.equals(ExpectedException.none());
-        
+                
         assertNull(instance);
-        assertNull(instanceTwo);
+        assertNull(instance);
     }
 
     /**
@@ -58,30 +60,27 @@ public class AdministratorTest {
     public ExpectedException exceptionRule = ExpectedException.none();
     
     /**
-     * Test of save method, of class Administrator.
+     * Test of save method, of class Secretary.
      */
     @Test
-    public void testSaveAndLoad() {
+    public void testSaveandLoad() {
         System.out.println("save");
-                
+        
         instance.save();
-        Administrator adminSerialized = new Administrator();
-        adminSerialized.load();
+        Secretary secSerialized = new Secretary();
+        secSerialized.load();
         
-        String expResult = "Tea";
-        String result = adminSerialized.getUserInfo().get(1).getSurname();
-        
-        assertEquals(expResult, result);
+        assertEquals(instance.getUserInfo().get(1).getUserID(), secSerialized.getUserInfo().get(1).getUserID());
     }
     
     /**
-     * Test that checkLogin method succeeds with correct input, of class Administrator.
+     * Test that checkLogin method succeeds with valid input, of class Secretary.
      */
     @Test
-    public void testCheckLoginSucceeds() {
-        System.out.println("checkLoginSucceeds");
-        String userID = "A1001";
-        String password = "adminpassword";
+    public void testCheckLoginSuceeds() {
+        System.out.println("checkLogin");
+        String userID = "S1001";
+        String password = "secpassword";
         
         boolean expResult = true;
         boolean result = instance.checkLogin(userID, password);
@@ -89,37 +88,41 @@ public class AdministratorTest {
     }
 
     /**
-     * Test that checkLogin method fails with incorrect input. Administrator class.
+     * Test that checkLogin method fails with invalid input, of class Secretary.
      */
     @Test
-    public void testCheckLoginFails(){
-        System.out.println("checkLoginFails");
+    public void testCheckLoginFails() {
+        System.out.println("checkLogin");
+        String userID = "Joe";
+        String password = "password";
         
-        String userID = "A1002";
-        String password = "adminspassword";
-                
         boolean result = instance.checkLogin(userID, password);
         assertFalse(result);
     }
+    
     /**
-     * Test that deleteUser method successfully removes user, of class Administrator.
+     * Test that deleteUser method successfully removes user. Of class Secretary.
      */
     @Test
     public void testDeleteUserSucceeds() {
         System.out.println("deleteUser");
-        String userID = "A1002";
-              
-        ArrayList<Administrator> expResult = instance.getUserInfo();
+        String userID = "S1002";
+        
+        Secretary testSec = new Secretary();
+        testSec.addSecToList(instance);
+        testSec.addSecToList(instanceTwo);        
+        
+        ArrayList<Secretary> expResult = instance.getUserInfo();
         expResult.remove(1);
         
-        instance.deleteUser(userID);
-        ArrayList<Administrator> result = instance.getUserInfo();
+        testSec.deleteUser(userID);
+        ArrayList<Secretary> result = testSec.getUserInfo();
         
         assertEquals(expResult, result);
     }
 
     /**
-     * Test that delete user method fails when unknown userID passed in. OF class Administrator.
+     * Test that delete user method fails when unknown userID passed in. OF class Secretary.
      */
     @Test
     public void deleteUserFail(){
@@ -131,44 +134,71 @@ public class AdministratorTest {
         assertNotNull(result);
     }
     /**
-     * Test of getUserInfo method, of class Administrator.
+     * Test of getUserInfo method, of class Secretary.
      */
     @Test
     public void testGetUserInfo() {
-        System.out.println("getUserInfo");
-        
-        ArrayList<Administrator> expResult = new ArrayList<>();
+       System.out.println("getUserInfo");
+       
+        ArrayList<Secretary> expResult = new ArrayList<>();
         expResult.add(instance);
         expResult.add(instanceTwo);
         
-        ArrayList<Administrator> result = instance.getUserInfo();
+        ArrayList<Secretary> result = instance.getUserInfo();
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of getUserIDList method, of class Administrator.
+     * Test of getUserIDList method, of class Secretary.
      */
     @Test
     public void testGetUserIDList() {
         System.out.println("getUserIDList");
         
         ArrayList<String> expResult = new ArrayList<>();
-        expResult.add("A1001");
-        expResult.add("A1002");
+        expResult.add("S1001");
+        expResult.add("S1002");
         
         ArrayList<String> result = instance.getUserIDList();
         assertEquals(expResult, result);
     }
 
     /**
-     * Test that returnUser method succeeds, of class Administrator.
+     * Test of getUserIndex method, ensures correct user index is returned. Of class Secretary.
+     */
+    @Test
+    public void testGetUserIndex() {
+       System.out.println("getUserIndex");
+        String userID = "S1002";
+        
+        int expResult = 1;
+        int result = instance.getUserIndex(userID);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getUserIndex method, ensures return of correct user. Of class Secretary.
+     */
+    @Test
+    public void testGetUserIndexFail() {
+        System.out.println("getUserIndex");
+        String userID = "S10012";
+        
+        exceptionRule.expect(ArrayIndexOutOfBoundsException.class);
+                
+        int result = instance.getUserIndex(userID);
+        assertNotNull(result);
+    }
+    
+    /**
+     * Test that returnUser method succeeds and returns valid user, of class Secretary.
      */
     @Test
     public void testReturnUserSucceeds() {
         System.out.println("returnUser");
-        String userID = "A1001";
-        
-        String expResult = "A1001, They, George, Everyman";
+        String userID = "S1001";
+         
+        String expResult = "S1001, They, George, Everyman";
         String result = instance.returnUser(userID);
         assertEquals(expResult, result);
     }
@@ -179,77 +209,48 @@ public class AdministratorTest {
     @Test
     public void testReturnUserFails() {
         System.out.println("returnUser");
-        String userID = "B7767";
+        String userID = "k";
         
         String expResult = null;
         String result = instance.returnUser(userID);
         assertEquals(expResult, result);
     }
-    /**
-     * Test of getUserIndex method, ensures return of correct user. Of class Administrator.
-     */
-    @Test
-    public void testGetUserIndexSucceed() {
-        System.out.println("getUserIndex");
-        String userID = "A1002";
-        
-        int expResult = 1;
-        int result = instance.getUserIndex(userID);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getUserIndex method, ensures return of correct user. Of class Administrator.
-     */
-    @Test
-    public void testGetUserIndexFail() {
-        System.out.println("getUserIndex");
-        String userID = "A0088";
-        
-        exceptionRule.expect(ArrayIndexOutOfBoundsException.class);
-                
-        int result = instance.getUserIndex(userID);
-        assertNotNull(result);
-    }
     
     /**
-     * Test of addAdminToList method, of class Administrator.
+     * Test of addSecToList method, of class Secretary.
      */
     @Test
-    public void testAddAdminToList() {
+    public void testAddSecToList() {
         System.out.println("addAdminToList");
-        Administrator tempAdmin = new Administrator("A1003", "3rdadminpassword", "Mr.", "Phil", "Philman", new ArrayList<>());
+        Secretary tempSec = new Secretary("S1003", "3rdadminpassword", "Mr.", "Phil", "Philman", new ArrayList<>());
        
-        ArrayList<Administrator> result = instance.getUserInfo();
-        ArrayList<Administrator> expResult = new ArrayList<>();
+        ArrayList<Secretary> result = instance.getUserInfo();
+        ArrayList<Secretary> expResult = new ArrayList<>();
         expResult.add(instance);
         expResult.add(instanceTwo);
-        expResult.add(tempAdmin);
+        expResult.add(tempSec);
         
-        instance.addAdminToList(tempAdmin);
+        instance.addSecToList(tempSec);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setMessages method, of class Administrator.
+      /**
+     * Test of setMessages method, of class Secretary.
      */
     @Test
     public void testSetMessages() {
-        System.out.println("setMessages");
+       System.out.println("setMessages");
         String message = "Hello world";
         String secondMessage = "Yea buddy";
         
         instance.getUserInfo().get(0).setMessages(message);
         instance.getUserInfo().get(0).setMessages(secondMessage);
-        
-        String expResult = secondMessage;
-        String result = instance.getUserInfo().get(0).getMessages().get(1);
-                
-        assertEquals(expResult, result);
+              
+        assertEquals(secondMessage, instance.getUserInfo().get(0).getMessages().get(1));
     }
 
     /**
-     * Test of getMessages method, of class Administrator.
+     * Test of getMessages method, of class Secretary.
      */
     @Test
     public void testGetMessages() {
@@ -261,56 +262,55 @@ public class AdministratorTest {
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add(message);
         expResult.add(secondMessage);
-        ArrayList<String> result = instance.getUserInfo().get(0).getMessages();
         
         instance.getUserInfo().get(0).setMessages(message);
         instance.getUserInfo().get(0).setMessages(secondMessage);
         
+        ArrayList<String> result = instance.getUserInfo().get(0).getMessages();
         assertEquals(expResult, result);
-    }    
+    }
     
     /**
-     * Test of receiveMessage method, of class Administrator.
+     * Test of receiveMessage method, of class Secretary.
      */
     @Test
     public void testReceiveMessage() {
         System.out.println("receiveMessage");
-        String userID = "A1002";
+        String userID = "S1002";
         String message = "This is a message";
          
         instance.receiveMessage(userID, message);
+        String expResult = message;
         
-        String expResult = message;        
-        String result = instance.getUserInfo().get(1).getMessages().get(0);
-        
+        String result =  instance.getUserInfo().get(1).getMessages().get(0);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of getUserMessages method, returns messages of specific userID. Of class Administrator.
+     * Test of getUserMessages method, returns messages of userID passed in. Of class Secretary.
      */
     @Test
     public void testGetUserMessagesSucceed() {
         System.out.println("getUserMessages");
-        String userID = "A1001";
+        String userID = "S1001";
         String message = "Something interesting";
         
         instance.getUserInfo().get(0).setMessages(message);
         
         ArrayList<String> expResult = new ArrayList<>();
         expResult.add(message);
-        List<String> result = instance.getUserMessages(userID);
         
+        List<String> result = instance.getUserMessages(userID);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getUserMessages method, returns null if incorrect ID passed. Of class Administrator.
      */
     @Test
     public void testGetUserMessagesFail() {
         System.out.println("getUserMessages");
-        String userID = "A0000";
+        String userID = "";
         String message = "Something interesting";
         
         instance.getUserInfo().get(0).setMessages(message);
@@ -320,21 +320,19 @@ public class AdministratorTest {
         List<String> result = instance.getUserMessages(userID);        
         assertNotNull(result);
     }
-
+    
     /**
-     * Test of deleteMessage method, deletes message if correct userID and index.
-     * Of class Administrator.
+     * Test of deleteMessage method, deletes message if index is correct. Of class Secretary.
      */
     @Test
-    public void testDeleteMessageSucceed() {
-        System.out.println("deleteMessage");
-        String userID = "A1001";
+    public void testDeleteMessage() {
+       System.out.println("deleteMessage");
+        String userID = "S1001";
         String message = "Something to say";
         String secondMessage = "Thing";
         int messageIndex = 0;
         
         instance.getUserInfo().get(0).setMessages(message);
-        instance.getUserInfo().get(0).setMessages(secondMessage);
         instance.getUserInfo().get(0).setMessages(secondMessage);
         instance.deleteMessage(userID, messageIndex);
         
@@ -342,15 +340,16 @@ public class AdministratorTest {
         String result = instance.getUserInfo().get(0).getMessages().get(0);
         assertEquals(expResult, result);
     }    
+    
     /**
      * Test of deleteMessage method, throws exception if message index is incorrect. 
-     * Of class Administrator.
+     * Of class Secretary.
      */
     @Test
     public void testDeleteMessage_messageIndexFail() {
         System.out.println("deleteMessage");
-        String userID = "A1001";
-        int messageIndex = -120;
+        String userID = "S1001";
+        int messageIndex = 800;
         
         exceptionRule.expect(IndexOutOfBoundsException.class);
         
