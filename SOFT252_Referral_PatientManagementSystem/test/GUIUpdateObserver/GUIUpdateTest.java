@@ -73,7 +73,7 @@ public class GUIUpdateTest {
         exception.expect(UnsupportedOperationException.class);
         
         updateInstance.updateObserver(testImplInstance);
-        updateInstance.updateDisplayMessage("Some message");
+        updateInstance.notifyUpdateObserver("Some message");
     }
     /**
      * Tests to ensure observer is removed from stored list.
@@ -96,7 +96,7 @@ public class GUIUpdateTest {
         exception.expect(UnsupportedOperationException.class);
         
         updateInstance.updateObserver(testImplInstance);
-        updateInstance.updateDisplayMessage("Some message");
+        updateInstance.notifyUpdateObserver("Some message");
     }
     
     public class ObserverTestImpl implements  GUIUpdateObserver{

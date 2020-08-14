@@ -81,7 +81,7 @@ public abstract class User {
                  if(nextID != 0){
                     return type + Integer.toString(nextID);
                 }else{
-                    GUIUpdate.getInstance().updateDisplayMessage("Couldn't "
+                    GUIUpdate.getInstance().notifyUpdateObserver("Couldn't "
                              + "generate ID");
                     throw new NullPointerException();
                 }
