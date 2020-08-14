@@ -51,6 +51,16 @@ public class GUIUpdateTest {
     @Rule
     public ExpectedException exception = ExpectedException.none();
     /**
+     * Test of getInstance method, of class GUIUpdate.
+     */
+    @Test
+    public void testGetInstance() {
+        System.out.println("getInstance");
+        
+        GUIUpdate result = GUIUpdate.getInstance();
+        assertTrue(result instanceof GUIUpdate);
+    }
+    /**
      * Tests adding an observer to the list of stored observers
      */
     @Test
