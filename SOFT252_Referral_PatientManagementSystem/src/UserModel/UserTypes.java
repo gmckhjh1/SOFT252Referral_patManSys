@@ -10,5 +10,8 @@ package UserModel;
  * @author Glenn McKnight
  */
 public enum UserTypes {
-    P, D, A, S, T, L;
+    /**
+     * P = Patient, D = Doctor, A = Administrator, S = Secretary, T = SignUpUser.
+     */
+    P, D, A, S, T;
 }
