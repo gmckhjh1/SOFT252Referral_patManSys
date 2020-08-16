@@ -24,6 +24,17 @@ public class SignUpUserTest {
     SignUpUser instance;
     SignUpUser instanceTwo;
     
+    @AfterClass
+    public void tearDownClass(){
+        SignUpUser signUp = new SignUpUser();
+        signUp.signupRequest("passpass12", "Mrs.", "Franki", "Franklin", 34, 
+                "15, don't know where I live, Plymouth, PL3 5TG");
+        signUp.signupRequest("passwordy1", "They", "Sky", "Auburn", 19, 
+                "109, spiffing avenue, Plymouth, PL1 1PO");
+        
+        signUp.save();
+    }
+    
     @Before
     public void setUp() {
         instance = new SignUpUser("T1001", "temppassword", "They", "George", "Everyman", 20, 

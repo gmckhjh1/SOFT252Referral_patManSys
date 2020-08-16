@@ -26,13 +26,6 @@ public class PatientTest {
     Patient instance;
     Patient instanceTwo;
     
-    public PatientTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
     @AfterClass
     public static void tearDownClass() {
         Patient patient1 = new Patient("P1001", "patientpassword", "Mr", "John", 
