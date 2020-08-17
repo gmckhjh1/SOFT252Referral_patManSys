@@ -25,7 +25,7 @@ public class SignUpUserTest {
     SignUpUser instanceTwo;
     
     @AfterClass
-    public void tearDownClass(){
+    public static void tearDownClass(){
         SignUpUser signUp = new SignUpUser();
         signUp.signupRequest("passpass12", "Mrs.", "Franki", "Franklin", 34, 
                 "15, don't know where I live, Plymouth, PL3 5TG");
