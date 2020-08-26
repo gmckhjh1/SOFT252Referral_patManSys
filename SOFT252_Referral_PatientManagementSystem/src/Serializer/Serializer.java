@@ -24,6 +24,7 @@ public class Serializer {
     public static void serializeObject (Serializable object, String name)
     {
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(name)))){
+                        
             oos.writeObject(object);                        
             oos.close();            
             
@@ -36,7 +37,6 @@ public class Serializer {
      * Static Deserializer method to decode serialized objects 
      * @param name Name of the file to be deserialized.
      * @return
-     * @throws java.lang.ClassNotFoundException
      */
     public static Object deserializeObject(String name){
         Object object = null;
