@@ -91,6 +91,7 @@ public class SecretaryGUI extends javax.swing.JFrame {
         medicineQuantityJSpinner = new javax.swing.JSpinner();
         orderJButton = new javax.swing.JButton();
         giveMedicineJButton = new javax.swing.JButton();
+        deleteMedicineJButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -349,6 +350,9 @@ public class SecretaryGUI extends javax.swing.JFrame {
         giveMedicineJButton.setText("Give Medicine");
         giveMedicineJButton.setActionCommand("");
 
+        deleteMedicineJButton.setText("Delete Medicine");
+        deleteMedicineJButton.setActionCommand("");
+
         javax.swing.GroupLayout medicinesJPanelLayout = new javax.swing.GroupLayout(medicinesJPanel);
         medicinesJPanel.setLayout(medicinesJPanelLayout);
         medicinesJPanelLayout.setHorizontalGroup(
@@ -375,7 +379,10 @@ public class SecretaryGUI extends javax.swing.JFrame {
                                 .addComponent(medicinePatientJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(medicinesJPanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(giveMedicineJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(giveMedicineJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, medicinesJPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(deleteMedicineJButton)))
                 .addContainerGap())
         );
         medicinesJPanelLayout.setVerticalGroup(
@@ -395,7 +402,9 @@ public class SecretaryGUI extends javax.swing.JFrame {
                 .addGroup(medicinesJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giveMedicineJButton)
                     .addComponent(orderJButton))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(deleteMedicineJButton)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         backgroundJTabbedPane.addTab("Medicines", medicinesJPanel);
@@ -543,6 +552,13 @@ public class SecretaryGUI extends javax.swing.JFrame {
      */
     public void addOrderMedicineButtonHandler(ActionListener controller){
         orderJButton.addActionListener(controller);
+    }
+    /**
+     * Register button handler to respond to delete medicine button.
+     * @param controller to respond to event.
+     */
+    public void addDeleteMedicineButtonHandler(ActionListener controller){
+        deleteMedicineJButton.addActionListener(controller);
     }
     /**
      * Register button handler to respond to prescribe medicine button.
@@ -791,6 +807,7 @@ public class SecretaryGUI extends javax.swing.JFrame {
     private javax.swing.JButton deleteAppointmentJButton;
     private javax.swing.JLabel deleteAppointmentJLabel;
     private javax.swing.JList<String> deleteAppointmentsJList;
+    private javax.swing.JButton deleteMedicineJButton;
     private javax.swing.JButton deleteMessageJButton;
     private javax.swing.JLabel detailsJLabel;
     private javax.swing.JButton giveMedicineJButton;

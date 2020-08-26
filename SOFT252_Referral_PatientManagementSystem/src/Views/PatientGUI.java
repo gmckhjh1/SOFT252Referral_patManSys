@@ -94,8 +94,6 @@ public class PatientGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(660, 470));
         setName("backgroundJFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(680, 490));
-        setResizable(false);
 
         titleJLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titleJLabel.setText("Indisposed Clinic");
@@ -125,6 +123,7 @@ public class PatientGUI extends javax.swing.JFrame {
 
         deleteMessageJButton.setText("Delete Message");
 
+        messagesJList.setAutoscrolls(false);
         jScrollPane7.setViewportView(messagesJList);
 
         javax.swing.GroupLayout homeJPanelLayout = new javax.swing.GroupLayout(homeJPanel);

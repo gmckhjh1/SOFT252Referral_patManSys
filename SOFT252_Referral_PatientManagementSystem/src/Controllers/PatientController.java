@@ -144,13 +144,7 @@ public class PatientController implements IController, ISetLogoutStrategy,
             System.out.println("Current prescription problem");
         }
     }
-    
-    
-    
-    
-    
-    
-    
+        
     private void setPatientAppointment(){
         try{
             String[] appointments = new String[appointmentModel.getCurrentAppointments().size()];
@@ -180,7 +174,7 @@ public class PatientController implements IController, ISetLogoutStrategy,
     }
     
     private void setRatedDoctors(){
-        String[] docRatings = new String[userModel.doctorsWithRatings().size()];
+        String[] docRatings = new String[userModel.getDocsAndRatings().size()];
         
         try{
             for(int i = 0; i < userModel.getDocsAndRatings().size(); i++){
@@ -260,7 +254,6 @@ public class PatientController implements IController, ISetLogoutStrategy,
             }
         }        
     }
-    
     
     class RequestAccountTerminationListener implements ActionListener{
 

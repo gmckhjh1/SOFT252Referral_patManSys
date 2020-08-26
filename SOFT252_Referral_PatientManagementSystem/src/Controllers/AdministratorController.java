@@ -249,16 +249,24 @@ public class AdministratorController implements IController,
     class CreateUserButtonListener implements ActionListener{
 
         @Override
-        public void actionPerformed(ActionEvent e) {           
-            userModel.createUser(view.getUserTypeJCombo().getSelectedItem().toString(), 
-                    view.getjPasswordField(), 
-                    view.getTitleJCombo().getSelectedItem().toString(),
-                    view.getForenameJText(), view.getSurnameJTextField(), 
-                    view.getAddressJTextField());
+        public void actionPerformed(ActionEvent e) {   
             
-            setDoctorCombo();
-            setSecCombo();
-            view.clearCreateUserFields();
+            if(!view.getjPasswordField().isEmpty() && !view.getForenameJText().isEmpty()&&
+                    !view.getSurnameJTextField().isEmpty()){
+                            
+                userModel.createUser(view.getUserTypeJCombo().getSelectedItem().toString(), 
+                        view.getjPasswordField(), 
+                        view.getTitleJCombo().getSelectedItem().toString(),
+                        view.getForenameJText(), view.getSurnameJTextField(), 
+                        view.getAddressJTextField());
+
+                setDoctorCombo();
+                setSecCombo();
+                setAdminCombo();
+                view.clearCreateUserFields();
+            }else{
+                view.displayMessage("Enter a value in each field");
+            }
         }
         
     }

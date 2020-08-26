@@ -33,6 +33,7 @@ public class ServicesFacade {
         }
         
         appointments.load();
+        medicines.load();
         sortAppointments();
     }
     /**
@@ -66,7 +67,7 @@ public class ServicesFacade {
         
         try{
             for(Appointments a : pastAppointments){
-
+                
                 appointment = a.getDoctorID() + ", " + a.getAppointmentDate().toString()
                         + ", " + a.getAppointmentTime();            
                 userModel.addAppointmentToHistory(appointment, a.getPatientID());
@@ -215,6 +216,14 @@ public class ServicesFacade {
      */
     public void updateStock(int medicineIndex, int quantity){
         medicines.updateStock(medicineIndex, quantity);
+    }
+    /**
+     * Calls method deleteMedicine from the medicineStock class to delete the 
+     * medicine specified by the parameter.
+     * @param medicineIndex Specified medicine to be deleted.
+     */
+    public void deleteMedicine(int medicineIndex){
+        medicines.deleteMedicine(medicineIndex);
     }
 }
 

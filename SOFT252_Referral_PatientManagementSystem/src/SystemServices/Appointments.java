@@ -228,15 +228,16 @@ public class Appointments implements Serializable{
         try{           
             for(int i = 0; i < currentAppointments.size(); i++){
                 if(currentAppointments.get(i).getAppointmentDate().isBefore(LocalDate.now())){
-                    
+                                        
                     pastAppointments.add(currentAppointments.get(i));
                     currentAppointments.remove(i);                    
 
                 }else if(!currentAppointments.get(i).isAppointmentApproved()){
+                    
                     appointmentRequests.add(currentAppointments.get(i));
                     currentAppointments.remove(i);
                 }
-            }            
+            }       
             return pastAppointments;
             
         }catch(ConcurrentModificationException ex){

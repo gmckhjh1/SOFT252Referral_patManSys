@@ -77,7 +77,8 @@ public class SecretaryController implements IController,
     
     @Override
     public void setModel() {
-        this.userModel = UserFacade.getInstance();            
+        this.userModel = UserFacade.getInstance(); 
+        this.servicesModel = ServicesFacade.getInstance();
     }
     
     /**
@@ -113,7 +114,7 @@ public class SecretaryController implements IController,
         view.addCreateAppointmentButtonHandler(new CreateAppointmentListener());
         view.addPrescribeMedicineButtonHandler(new GiveMedicineButtonListener());
         view.addOrderMedicineButtonHandler(new OrderMedicineButtonListener());
-
+        view.addDeleteMedicineButtonHandler(new DeleteMedicineButtonListener());
     }
 
     @Override 
@@ -226,7 +227,7 @@ public class SecretaryController implements IController,
                     medicineStock.get(i).getQuantity();
         }
         
-        view.setMedicinesJList(medicines);
+        view.setMedicinesJList(medicines);        
     }
         
     ////////////////////////////////////////////////////////////////////////////
@@ -306,6 +307,7 @@ public class SecretaryController implements IController,
                 servicesModel.setApproved(view.getAppointmentRequestIndex());
             
                 setAppointmentApprovalRequests();
+                setDeleteAppointmentList();
                 view.displayMessage("Appointment approved");
                 
             }catch(NullPointerException ex){
@@ -380,25 +382,46 @@ public class SecretaryController implements IController,
         }
     }
     
+    class DeleteMedicineButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            try{
+                servicesModel.deleteMedicine(view.getMedicineListIndex());
+                setMedicinesJList();
+                
+            }catch(NullPointerException ex){
+                view.displayMessage("Select a medicine");
+            }
+        }
+    
+    }
+    
     class GiveMedicineButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(view.getMedicineQuantity() != 0){
-                
-                String message;
-                message = userModel.getLoggedInUser() + ": Your doctor has prescribed " 
-                        + view.getPrescribedMedicine().substring(0, view.getPrescribedMedicine().length()-2) 
-                        +". I have sent this much of it to you: "
-                        + view.getMedicineQuantity();
-                
-                userModel.giveMedicine(view.getMedicineListIndex(), 
-                        view.getMedicineQuantity(), view.getPrescriptionPatientID(), 
-                        message);
-                
-                setMedicinesJList();
-            }else{
-                view.displayMessage("Please enter a medicine quantity");
+            
+            try{
+                if(view.getMedicineQuantity() != 0){
+
+                    String message;
+                    message = userModel.getLoggedInUser() + ": Your doctor has prescribed" + "\n"
+                            + view.getPrescribedMedicine().substring(0, view.getPrescribedMedicine().length()-2) 
+                            +"." + "\n" + " I have sent this much of it to you: " + "\n"
+                            + view.getMedicineQuantity();
+
+                    userModel.giveMedicine(view.getMedicineListIndex(), 
+                            view.getMedicineQuantity(), view.getPrescriptionPatientID(), 
+                            message);
+
+                    setMedicinesJList();
+                }else{
+                    view.displayMessage("Please enter a medicine quantity");
+                }
+            }catch(NullPointerException ex){
+                view.displayMessage("Select a medicine");
             }
         }        
     }

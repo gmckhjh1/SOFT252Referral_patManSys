@@ -97,7 +97,6 @@ public class DoctorGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(680, 490));
         setPreferredSize(new java.awt.Dimension(660, 470));
-        setResizable(false);
 
         titleJLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titleJLabel.setText("Indisposed Clinic");

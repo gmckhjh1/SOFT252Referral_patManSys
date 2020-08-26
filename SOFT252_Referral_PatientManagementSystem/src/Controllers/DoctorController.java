@@ -173,10 +173,10 @@ public class DoctorController implements IController, ISetLogoutStrategy, GUIUpd
     private void setPatientHistory(){
         try{
             String[] patientNotes;
-            patientNotes = new String[userModel.getPatientNotes(view.getPatientHistoryID()).size()];
+            patientNotes = new String[userModel.getPatientNotes(view.getPatientHistoryID().substring(0,5)).size()];
             
             for(int i = 0; i < patientNotes.length; i++){
-                patientNotes[i] = userModel.getPatientNotes(view.getPatientHistoryID()).get(i);
+                patientNotes[i] = userModel.getPatientNotes(view.getPatientHistoryID().substring(0,5)).get(i);
             }
             
             view.setPatientHistory(patientNotes);           
@@ -188,7 +188,7 @@ public class DoctorController implements IController, ISetLogoutStrategy, GUIUpd
     
     private void setPrescriptionHistory(){
         try{
-            String patientID = view.getPatientHistoryID();            
+            String patientID = view.getPatientHistoryID().substring(0, 5); 
             String[] prescriptions = new String[userModel.getUserPrescription(patientID).size()];
 
             for(int i = 0; i < userModel.getUserPrescription(patientID).size(); i++){
@@ -270,7 +270,14 @@ public class DoctorController implements IController, ISetLogoutStrategy, GUIUpd
         @Override
         public void actionPerformed(ActionEvent e) {
             try{
-                userModel.addPatientNotes(view.getPatientHistoryID(), view.getNotes());
+                userModel.addPatientNotes(view.getPatientHistoryID().substring(0,5), 
+                        view.getNotes());
+                
+                
+                System.out.println("PatientID should be: " + view.getPatientHistoryID().substring(0,5));
+                
+                
+                
                 view.displayMessage("Notes added");
                 setPatientHistory();
                 view.clearNotesJText();

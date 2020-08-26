@@ -227,6 +227,7 @@ public class Patient extends User implements Serializable, ILoginCheck,
             patientList.get(index).messages.remove(messageIndex);
         }catch(IndexOutOfBoundsException ex){
             ex.printStackTrace();
+            GUIUpdate.getInstance().notifyUpdateObserver("Select a message");
         }     
     }    
     ////////////////////////////////////////////////////////////////////////////

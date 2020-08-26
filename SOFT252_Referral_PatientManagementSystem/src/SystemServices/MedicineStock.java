@@ -75,6 +75,18 @@ public class MedicineStock implements Serializable {
         medStock.add(tempMed);
     }
     /**
+     * Deletes the medicine from the stock list specified by the index parameter.
+     * @param medIndex specified medicine to be deleted.
+     */
+    public void deleteMedicine(int medIndex){
+        try{
+            medStock.remove(medStock.get(medIndex));
+        
+        }catch(NullPointerException | IndexOutOfBoundsException ex){
+            GUIUpdate.getInstance().notifyUpdateObserver("Couldn't delete medicine");
+        }
+    }
+    /**
      * Adds the quantity passed as parameter to the specified medicine. Use a 
      * negative number to reduce the medicine quantity.
      * @param medStockIndex specified medicine to update.
@@ -187,7 +199,7 @@ public class MedicineStock implements Serializable {
      * Acessor to get a list of medicines stored. 
      * @return list o medicine stock.
      */
-    public ArrayList<MedicineStock> getMedStock() {
+    public ArrayList<MedicineStock> getMedStock() {        
         return medStock;
     }
     /**

@@ -32,24 +32,24 @@ public class MedicineStockTest {
         medicine.addMedicine("Lithium", "300mg / twice per day", "Mania, Bipolar Disorder");
         medicine.updateStock(0, 60);
         medicine.addMedicine("Diazepam", "5mg / 3-4 times per day", "Anxiety disorders, alochol withdrawal symptoms, muscle spasms");
-        medicine.updateStock(0, 100);
+        medicine.updateStock(1, 100);
         medicine.addMedicine("Lorazepam", "2mg / 2-3times per day", "Anxiety disorders, seizures");
-        medicine.updateStock(0, 90);
+        medicine.updateStock(2, 90);
         medicine.addMedicine("Insulin", "4 units", "Diabetes");
-        medicine.updateStock(0, 90);
+        medicine.updateStock(3, 90);
         medicine.addMedicine("Zopaclone", "1mg before bed", "Insomnia");
-        medicine.updateStock(0, 10);
+        medicine.updateStock(4, 10);
         medicine.addMedicine("Amoxicillan", "250mg / twice per day", "Bacerial infections");
-        medicine.updateStock(0, 10);
+        medicine.updateStock(5, 10);
         medicine.addMedicine("Hydrocortisone", "1% / apply as needed", "Inflammation");
-        medicine.updateStock(0, 15);
+        medicine.updateStock(6, 15);
         medicine.addMedicine("Atorvastatin", "20mg / once per day", "High cholesterol, stroke and heart attack risk");
-        medicine.updateStock(0, 22);
+        medicine.updateStock(7, 22);
         medicine.addMedicine("Lisinopril", "5mg / once per day", "High blood pressure");
-        medicine.updateStock(0, 10);
+        medicine.updateStock(8, 10);
         medicine.addMedicine("Warfarin", "5mg / once per day", "Blood thinner to reduce clotting");
-        medicine.updateStock(0, 40);
-        
+        medicine.updateStock(9, 40);
+                
         medicine.save();
     }
     

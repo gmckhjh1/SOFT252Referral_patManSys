@@ -5,17 +5,35 @@
  */
 package Main;
 
+import Controllers.LoginController;
+import SystemServices.ServicesFacade;
+import UserModel.UserFacade;
+import View.LoginGUI;
+
 /**
  *
  * @author Glenn McKnight
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        runSerializedProject();
+    }
+    
+    /**
+     * Creates and initialises all required parts of the loginMVC subsystem
+     */
+    private static void runSerializedProject(){
+        
+        LoginGUI view = new LoginGUI();
+        LoginController controller = LoginController.getInstance();
+        
+        controller.setModel();
+        controller.setView(view);
+        controller.addButtonHandler();
+      
+        view.setVisible(true);        
     }
     
 }

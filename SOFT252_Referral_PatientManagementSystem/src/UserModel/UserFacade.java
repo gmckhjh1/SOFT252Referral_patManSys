@@ -397,6 +397,10 @@ public class UserFacade {
        
         if(medicines.updateStock(medStockIndex, -quantity)){
             sendMessage(patientID, message);
+            patient.setPrescriptions(patientID, 
+                    medicines.getMedStock().get(medStockIndex).getMedicineName() + ", " 
+                    + medicines.getMedStock().get(medStockIndex).getMedicineDosage() + ", "
+                    + medicines.getMedStock().get(medStockIndex).getCommonUses());
         }else{
             GUIUpdate.getInstance().notifyUpdateObserver("Not enough of this "
                     + "medicine in stock to give to patient");

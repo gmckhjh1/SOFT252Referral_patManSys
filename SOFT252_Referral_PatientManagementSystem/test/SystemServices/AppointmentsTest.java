@@ -32,15 +32,15 @@ public class AppointmentsTest {
         
         Appointments appoint1 = new Appointments();
         
-        appoint1.addAppointment("D1001", "08:00", LocalDate.of(2020, Month.MARCH, 14), "P1001");
+        appoint1.addAppointment("D1001", "08:00", LocalDate.of(2020, Month.MARCH, 13), "P1001");
         appoint1.addAppointment("D1001", "12:30", LocalDate.of(2020, Month.OCTOBER, 9), "P1001");
         appoint1.addAppointment("D1001", "16:30", LocalDate.of(2020, Month.APRIL, 20), "P1001");
-        appoint1.addAppointment("D1001", "14:00", LocalDate.of(2020, Month.NOVEMBER, 21), "P1002");
+        appoint1.addAppointment("D1001", "14:00", LocalDate.of(2020, Month.NOVEMBER, 20), "P1002");
         appoint1.addAppointment("D1001", "09:00", LocalDate.of(2020, Month.NOVEMBER, 25), "P1003");
-        appoint1.addAppointment("D1002", "09:30", LocalDate.of(2020, Month.DECEMBER, 19), "P1003");
-        appoint1.addAppointment("D1003", "15:00", LocalDate.of(2020, Month.OCTOBER, 4), "P1003");
+        appoint1.addAppointment("D1002", "09:30", LocalDate.of(2020, Month.DECEMBER, 18), "P1003");
+        appoint1.addAppointment("D1003", "15:00", LocalDate.of(2020, Month.OCTOBER, 5), "P1003");
         appoint1.addAppointment("D1003", "16:30", LocalDate.of(2021, Month.JANUARY, 5), "P1002");
-        appoint1.addAppointment("D1003", "17:30", LocalDate.of(2020, Month.JANUARY, 31), "P1002");
+        appoint1.addAppointment("D1003", "17:30", LocalDate.of(2020, Month.JANUARY, 29), "P1002");
         
         appoint1.save();
     }
