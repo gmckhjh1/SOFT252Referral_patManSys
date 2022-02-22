@@ -223,7 +223,7 @@ public class SecretaryGUI extends javax.swing.JFrame {
         setAppointmentJLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         setAppointmentJLabel.setText("Appointment Setting");
 
-        appointmentDateJSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(1601988660000L), java.util.Calendar.DAY_OF_MONTH));
+        appointmentDateJSpinner.setModel(new javax.swing.SpinnerDateModel());
 
         appointmentDateJLabel.setText("Appointment date:");
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="SOFT252_Referral_PatientManagementSystem/src"/>
+	<classpathentry kind="src" path="SOFT252_Referral_PatientManagementSystem/test"/>
+	<classpathentry kind="lib" path="SOFT252_Referral_PatientManagementSystem/dist/PatientManagementSystem.jar"/>
+	<classpathentry kind="output" path="SOFT252_Referral_PatientManagementSystem/build/classes"/>
+</classpath>

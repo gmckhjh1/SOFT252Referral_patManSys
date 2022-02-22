@@ -11,7 +11,8 @@ package UserModel;
  */
 public enum UserTypes {
     /**
-     * P = Patient, D = Doctor, A = Administrator, S = Secretary, T = SignUpUser.
+     * P = Patient, D = Doctor, A = Administrator, S = Secretary, T = SignUpUser,
+     * L = LoggedOutUser
      */
     P, D, A, S, T, L;
 }

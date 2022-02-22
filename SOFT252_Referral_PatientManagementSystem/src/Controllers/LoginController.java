@@ -177,7 +177,6 @@ public class LoginController implements IController{
         
         @Override
         public void windowClosing(WindowEvent e) {
-            userModel.saveAll();
             System.out.println("Should be saved");
         }
     }

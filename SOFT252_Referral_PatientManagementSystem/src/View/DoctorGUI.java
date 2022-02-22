@@ -96,7 +96,6 @@ public class DoctorGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(680, 490));
-        setPreferredSize(new java.awt.Dimension(660, 470));
 
         titleJLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titleJLabel.setText("Indisposed Clinic");
@@ -165,7 +164,7 @@ public class DoctorGUI extends javax.swing.JFrame {
 
         appointmentDateJLabel.setText("Appointment date:");
 
-        appointmentDateJSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(1601988660000L), java.util.Calendar.DAY_OF_MONTH));
+        appointmentDateJSpinner.setModel(new javax.swing.SpinnerDateModel());
 
         appointmentTimeJLabel.setText("Appointment time:");
 

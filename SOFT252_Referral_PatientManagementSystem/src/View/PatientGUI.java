@@ -185,7 +185,8 @@ public class PatientGUI extends javax.swing.JFrame {
         requestAppointmentJLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         requestAppointmentJLabel.setText("Request Appointment");
 
-        appointmentDateJSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(1601988660000L), java.util.Calendar.DAY_OF_MONTH));
+        appointmentDateJSpinner.setModel(new javax.swing.SpinnerDateModel());
+        appointmentDateJSpinner.setToolTipText("");
 
         appointmentDateJLabel.setText("Appointment date:");
 
@@ -519,17 +520,18 @@ public class PatientGUI extends javax.swing.JFrame {
      * Sets format of date spinner to local date to avoid confusion between 
      * different potential date formats.
      */
-    public void setAppointmentDateSpinnerFormat(){
-        
+    public void setAppointmentDateSpinnerFormat(){       
         try{
             SimpleDateFormat format;
+            
             format = ((JSpinner.DateEditor) appointmentDateJSpinner.getEditor()).getFormat();
             format.applyPattern("dd/MM/yy");
             appointmentDateJSpinner.commitEdit();
             
+            
         } catch(ParseException ex){
             displayMessage("Appointment booking date format error");
-        }
+        }            
     }
     /**
      * Fills JComboBox with possible appointment times.
@@ -554,8 +556,8 @@ public class PatientGUI extends javax.swing.JFrame {
      * Return selected appointment date from JSpinner.
      * @return date selected.
      */    
-    public LocalDate getAppointmentDate(){
-        try{            
+    public LocalDate getAppointmentDate(){        
+        try{              
             Date date = (Date)appointmentDateJSpinner.getValue();
             LocalDate returnDate = date.toInstant()
                                     .atZone(ZoneId.systemDefault())

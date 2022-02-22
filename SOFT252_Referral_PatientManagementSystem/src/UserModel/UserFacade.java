@@ -12,9 +12,11 @@ import GUIUpdateObserver.GUIUpdate;
 import SystemServices.MedicineStock;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Facade pattern class to encapsulate all User subclasses and operations. 
@@ -38,6 +40,14 @@ public class UserFacade {
     private User userType;
     private boolean messageSent;    
        
+    private final Map<Enum, User> users = new HashMap<Enum, User>(){{
+        put(UserTypes.P, patient);
+        put(UserTypes.D, doctor);
+        put(UserTypes.A, admin);
+        put(UserTypes.S, sec);
+        put(UserTypes.T, signupUser);
+    }};
+    
     /**
      * Default constructor initialises all User subclass objects.
      */
@@ -76,6 +86,8 @@ public class UserFacade {
      * user type to perform operations on.
      * @param userID identifies the user type to perform operations on
      */    
+    
+    /*
     private void setUserOperationType(String userID){
         try{
             switch(UserTypes.valueOf(userID.substring(0, 1))){
@@ -103,6 +115,20 @@ public class UserFacade {
             GUIUpdate.getInstance().notifyUpdateObserver("Invalid user type");
         }
     }    
+    */
+    private void setUserOperationType(String userID){
+        
+        try{
+            UserTypes type = UserTypes.valueOf(userID.substring(0, 1));
+            
+            userType = users.get(type);
+            
+        }catch(ClassCastException | IllegalArgumentException | NullPointerException ex){
+            
+            GUIUpdate.getInstance().notifyUpdateObserver("Invalid user type");
+            userType = null;
+        }
+    }
     
     /**
      * Calls checkLogin methods of all User subclasses and passes them the

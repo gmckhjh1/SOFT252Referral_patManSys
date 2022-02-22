@@ -6,15 +6,10 @@
 package View;
 
 import java.awt.event.ActionListener;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
